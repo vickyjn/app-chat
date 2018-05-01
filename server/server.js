@@ -18,6 +18,19 @@ socket.on('disconnect',()=>{
   console.log("disconnected from server");
 });
 
+
+socket.on('createMessage',function(message){
+  console.log("create message",message);
+});
+
+socket.emit('newMessage',{
+  from:"John",
+  text:"See you then",
+  createdAt:123123
+});
+
+
+
 });
 
 
