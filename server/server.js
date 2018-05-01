@@ -18,6 +18,18 @@ socket.on('disconnect',()=>{
   console.log("disconnected from server");
 });
 
+socket.emit('newMessage',{
+  from:"Admin",
+  text:"welcome to the chat app",
+  createdAt:new Date().getTime()
+});
+
+socket.broadcast.emit('newMessage',{
+  from:"Admin",
+  text:"new user joined",
+  createdAt:new Date().getTime()
+});
+
 
 socket.on('createMessage',function(message){
   io.emit('newMessage',{
@@ -25,6 +37,13 @@ socket.on('createMessage',function(message){
     text:message.text,
     createdAt:new Date().getTime()
   });
+
+  // socket.broadcast.emit('newMessage',{
+  //   from:message.from,
+  //   text:message.text,
+  //   createdAt:new Date().getTime()
+  // });
+
 });
 
 
