@@ -20,14 +20,14 @@ socket.on('disconnect',()=>{
 
 
 socket.on('createMessage',function(message){
-  console.log("create message",message);
+  io.emit('newMessage',{
+    from:message.from,
+    text:message.text,
+    createdAt:new Date().getTime()
+  });
 });
 
-socket.emit('newMessage',{
-  from:"John",
-  text:"See you then",
-  createdAt:123123
-});
+
 
 
 
